@@ -53,7 +53,7 @@ userSchema.pre("save", async function(next){
   this.password = await bcrypt.hash(this.password, salt);
   next();
 } )
-userSchema.static.login = async function (email, password) {
+userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({email});
   if (user) {
     const auth = await bcrypt.compare(password, user.password);
