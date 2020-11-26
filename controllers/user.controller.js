@@ -91,3 +91,13 @@ module.exports.follow = async (req, res)=>{
         return res.status(500).json({message: error});
     }
 }
+module.exports.unfollow = async (req, res)=>{
+    if (!ObjectID.isValid(req.params.id) ) {
+        return res.status(400).send(`ID unknown :${req.params.id}`)
+    }
+    try {
+        
+    } catch (error) {
+        return res.status(500).json({message: error});
+    }
+}
