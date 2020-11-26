@@ -13,3 +13,6 @@ module.exports.signUp = async (req, res)=>{
         res.status(200).send({error})
     }
 }
+module.exports.logout = async (req, res )=> {
+
+}
