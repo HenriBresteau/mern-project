@@ -64,7 +64,7 @@ module.exports.deletePost = (req, res) => {
         }
     )
 };
-module.exports.likePost= async (req, res){
+module.exports.likePost= async (req, res) => {
     if (!ObjectID.isValid(req.params.id)) {
         return res.status(400).send(`ID unknown :${req.params.id}`);
       }
