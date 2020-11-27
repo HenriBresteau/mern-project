@@ -3,10 +3,16 @@ const UserModel = require('../models/user.model');
 const ObjectID = require('mongoose').Types.ObjectID;
 
 module.exports.readPost = (req, res) =>{
-
+    PostModel.find( ( err, docs) => {
+        if (!err) {
+            res.send(docs);
+        } else {
+            console.log(`Error to get data :${err}`);
+        }
+    })
 }
 module.exports.createPost = (req, res) =>{
-
+    
 }
 module.exports.updatePost = (req, res) =>{
 
