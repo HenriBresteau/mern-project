@@ -98,6 +98,6 @@ module.exports.likePost= async (req, res) => {
       }
 }
 
-module.exports.unlikePost= async (req, res){
+module.exports.unlikePost= async (req, res) => {
     
 }
