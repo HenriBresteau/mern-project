@@ -11,14 +11,21 @@ module.exports.readPost = (req, res) =>{
         }
     })
 }
-module.exports.createPost = (req, res) =>{
+module.exports.createPost = async (req, res) =>{
     const newPost = new PostModel({
         posterId: req.body.posterId,
         message: req.body.message,
         video: req.body.video,
         likers: [],
         comments: [],
-    })
+    });
+
+    try {
+        const post = await newPost.save();
+        return res.status(201).json(post);
+    } catch (error) {
+        return res.status(400).send(error);
+    }
 }
 module.exports.updatePost = (req, res) =>{
 
