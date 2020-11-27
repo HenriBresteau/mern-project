@@ -132,6 +132,34 @@ module.exports.unlikePost= async (req, res) => {
       }
 }
 
-module.exports.commentPost = async (req, res)=>{}
-module.exports.editCommentPost = async (req, res)=>{}
-module.exports.deleteCommentPost = async (req, res)=>{}
+module.exports.commentPost = (req, res)=>{
+    if (!ObjectID.isValid(req.params.id)) {
+        return res.status(400).send(`ID unknown :${req.params.id}`);
+      }
+      try {
+          return PostModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $push: {
+                    comments: {
+                        commenterId: req.body.commenterId,
+                        commenterPseudo: req.body.commenterPseudo,
+                        text: req.body.text,
+                        timestamp: new Date().getTime()
+                    }
+                }
+            }, {new:true},
+            (err , docs)=>{
+                if (!err) {
+                    return res.send(docs);
+                } else {
+                    return res.status(400).send(err)
+                }
+            }
+          )
+      } catch (error) {
+          return res.status(400).send(error)
+      }
+}
+module.exports.editCommentPost =  (req, res)=>{}
+module.exports.deleteCommentPost =  (req, res)=>{}
