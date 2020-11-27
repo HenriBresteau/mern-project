@@ -185,4 +185,30 @@ module.exports.editCommentPost = (req, res) => {
     return res.status(400).send(error);
   }
 };
-module.exports.deleteCommentPost = (req, res) => {};
+module.exports.deleteCommentPost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id)) {
+    return res.status(400).send(`ID unknown :${req.params.id}`);
+  }
+  try {
+    return PostModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $pull: {
+          comments: {
+            _id: req.body.commentId,
+          },
+        },
+      },
+      { new: true },
+      (err, docs) => {
+        if (!err) {
+          return res.send(docs);
+        } else {
+          return res.status(400).send(err);
+        }
+      }
+    );
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
