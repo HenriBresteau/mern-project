@@ -131,3 +131,7 @@ module.exports.unlikePost= async (req, res) => {
           return res.status(400).send(err);
       }
 }
+
+module.exports.commentPost = async (req, res)=>{}
+module.exports.editCommentPost = async (req, res)=>{}
+module.exports.deleteCommentPost = async (req, res)=>{}
