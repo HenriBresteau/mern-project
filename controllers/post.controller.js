@@ -12,7 +12,13 @@ module.exports.readPost = (req, res) =>{
     })
 }
 module.exports.createPost = (req, res) =>{
-    
+    const newPost = new PostModel({
+        posterId: req.body.posterId,
+        message: req.body.message,
+        video: req.body.video,
+        likers: [],
+        comments: [],
+    })
 }
 module.exports.updatePost = (req, res) =>{
 
