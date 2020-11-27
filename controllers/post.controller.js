@@ -9,7 +9,7 @@ module.exports.readPost = (req, res) => {
     } else {
       console.log(`Error to get data :${err}`);
     }
-  });
+  }).sort({createAt:-1});
 };
 module.exports.createPost = async (req, res) => {
   const newPost = new PostModel({
