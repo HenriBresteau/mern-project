@@ -20,5 +20,11 @@ module.exports.uploadProfil = async (req, res) => {
     return res.satuts(201).json(error);
   }
 
-  
+  const fileName= req.body.name +'.jpg';
+  await pipeline(
+      req.file.stream,
+      fs.createWriteStream(
+          `${__dirname}/../client/publics/uploads/profil/${fileName}`
+      )
+  )
 };
