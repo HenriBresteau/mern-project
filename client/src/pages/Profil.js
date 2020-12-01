@@ -4,7 +4,7 @@ const Profil = () => {
     return (
         <div className='profil-page'>
             <div className="log-container">
-                <Log ></Log>
+                <Log signin={false} signup={true}></Log>
                 <div className="img-container">
                     <img src="./img/log.svg" alt="logo"/>
                 </div>
