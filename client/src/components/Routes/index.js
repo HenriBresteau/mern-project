@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-do
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Trending from '../../pages/Trending';
+import Navbar from '../Navbar';
 const index = () => {
     return (
         <Router>
+            <Navbar></Navbar>
             <Switch>
                 <Route path='/' exact component={Home}></Route>
                 <Route path='/profil' exact component={Profil}></Route>
