@@ -1,12 +1,25 @@
-import React from 'react';
-import LeftNav from '../LeftNav';
+import React from "react";
+import LeftNav from "../LeftNav";
+import { useSelector } from "react-redux";
+import UploadImg from "./UploadImg";
 
 const UpdateProfil = () => {
-    return (
-        <div className="profil-container">
-            <LeftNav></LeftNav>
+  const userData = useSelector((state) => state.userReducer);
+
+  return (
+    <div className="profil-container">
+      <LeftNav></LeftNav>
+      <h1>Profil de {userData.pseudo}</h1>
+      <div className="update-container">
+        <div className="left-part">
+          <h3>Photo de profil</h3>
+          <img src={userData.picture} alt="user-pic" />
+          
+          <UploadImg></UploadImg>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default UpdateProfil;
