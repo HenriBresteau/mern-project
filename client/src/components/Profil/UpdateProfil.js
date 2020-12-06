@@ -11,6 +11,9 @@ const UpdateProfil = () => {
 
   const userData = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+  const [followingPopup, setFollowingPopup] = useState(false);
+  const [followersPopup, setFollowersPopup] = useState(false);
+
   const handleUpdate = () => {
     dispatch(updateBio(userData._id, bio));
     setUpdateForm(false);
@@ -52,11 +55,26 @@ const UpdateProfil = () => {
               </>
             )}
           </div>
-          <h4>Membre depuis le : { dateParser(userData.createdAt) } </h4>
-            <h5>Abonnements : {userData.following ? userData.following.length : ""}</h5>
-            <h5>Abonnés : {userData.followers ? userData.followers.length : ""}</h5>
+          <h4>Membre depuis le : {dateParser(userData.createdAt)} </h4>
+          <h5 onClick={() => setFollowingPopup(true)}>
+            Abonnements : {userData.following ? userData.following.length : ""}
+          </h5>
+          <h5 onClick={() => setFollowersPopup(true)}>
+            Abonnés : {userData.followers ? userData.followers.length : ""}
+          </h5>
         </div>
       </div>
+      { followingPopup && 
+        <div className="popup-profil-container">
+          <div className="modal">
+            <h3>Abonnements</h3>
+            <span className="cross" onClick={()=>setFollowingPopup(false)}>&#10005;</span>
+            <ul>
+              
+            </ul>
+          </div>
+        </div>
+        }
     </div>
   );
 };
